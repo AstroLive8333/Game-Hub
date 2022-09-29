@@ -24,13 +24,15 @@
 <script>
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
+var mode = prompt("Easy or Normal mode? (put 1 for easy and 2 for Normal");
+var score = 0;
 
 var grid = 16;
 var count = 0;
   
 var snake = {
   x: 160,
-  y: 160,
+  y: 160, 
   
   // snake velocity. moves one grid length every frame in either the x or y direction
   dx: grid,
@@ -107,6 +109,7 @@ function loop() {
     // snake ate apple
     if (cell.x === apple.x && cell.y === apple.y) {
       snake.maxCells++;
+      score++;
 
       // canvas is 400x400 which is 25x25 grids 
       apple.x = getRandomInt(0, 25) * grid;
@@ -117,16 +120,17 @@ function loop() {
     for (var i = index + 1; i < snake.cells.length; i++) {
       
       // snake occupies same space as a body part. reset game
-      if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
+      if (mode == 2){
+     if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
         snake.x = 160;
         snake.y = 160;
         snake.cells = [];
         snake.maxCells = 4;
         snake.dx = grid;
         snake.dy = 0;
-
         apple.x = getRandomInt(0, 25) * grid;
         apple.y = getRandomInt(0, 25) * grid;
+      }
       }
     }
   });
