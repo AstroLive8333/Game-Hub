@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 
-Do you want to play a game?
-
-  <a href="https://astrolive8333.github.io/Test1234/root/floors/step2.tar.gz" download="Step 2">Yes</a>
-  <a href="https://astrolive8333.github.io/Test1234/root/floors/quit.tar.gz" target="_blank">No</a>
-
+  <p id="Start"> Do you want to play a game? </p>
+  <button id="yes" onclick="StartGame()">Yes</button>
+  <button id="no" onlcick="dontstartgame()">No</button>
+  <script>
+    function StartGame(){
+     window.open("/root/floors/step2.html");
+     //alert("let's begin");
+    }
+  </script>
+  
 </html>
