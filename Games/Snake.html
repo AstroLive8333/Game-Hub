@@ -1,8 +1,26 @@
 <!DOCTYPE html>
 <html>
+  <heading>
+    <button class="Difficulty" onclick="easy()">Easy</button>
+    <button class="Difficulty" onclick="normal()">Normal</button>
+  </heading>
 <head>
-  <title></title>
+  <title>Snake</title>
   <style>
+  .Difficulty {
+     background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius:10px;
+  cursor:pointer;
+    }
+    
+    
   html, body {
     height: 100%;
     margin: 0;
@@ -24,7 +42,13 @@
 <script>
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
-var mode = prompt("Easy or Normal mode? (put 1 for easy and 2 for Normal");
+var mode = null;
+function easy(){
+  mode=1;
+}
+function normal(){
+mode=2;
+}
 var score = 0;
 
 var grid = 16;
@@ -131,6 +155,13 @@ function loop() {
         apple.x = getRandomInt(0, 25) * grid;
         apple.y = getRandomInt(0, 25) * grid;
       }
+      }else if(mode == 1){
+       if(cell.x === snake.cells[i].x && cell.y === snake.cells[i].y){
+        //do nothing because easy mode lets you do that.
+         //only put this so that way if you don't do anything then it will not do anything.
+       }
+      }else if(mode == 0){
+       confirm(""); 
       }
     }
   });
