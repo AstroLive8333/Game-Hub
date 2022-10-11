@@ -43,11 +43,30 @@
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
 var mode = null;
+var start = 0;
 function easy(){
   mode=1;
+  start=1;
+        snake.x = 160;
+        snake.y = 160;
+        snake.cells = [];
+        snake.maxCells = 4;
+        snake.dx = grid;
+        snake.dy = 0;
+        apple.x = getRandomInt(0, 25) * grid;
+        apple.y = getRandomInt(0, 25) * grid;
 }
 function normal(){
 mode=2;
+start=1;
+        snake.x = 160;
+        snake.y = 160;
+        snake.cells = [];
+        snake.maxCells = 4;
+        snake.dx = grid;
+        snake.dy = 0;
+        apple.x = getRandomInt(0, 25) * grid;
+        apple.y = getRandomInt(0, 25) * grid;
 }
 var score = 0;
 
@@ -80,14 +99,24 @@ function getRandomInt(min, max) {
 }
 
 // game loop
+if(start=1){
 function loop() {
   requestAnimationFrame(loop);
 
   // slow game loop to 15 fps instead of 60 (60/15 = 4)
+  if(mode=1 && start=1){
   if (++count < 4) {
     return;
   }
-
+  }else if(mode=2 && start=1){
+   if (++count < 1) {
+    return; 
+   }
+  }else{
+  if (++count > 400) {
+    return;
+  }
+    
   count = 0;
   context.clearRect(0,0,canvas.width,canvas.height);
 
@@ -96,12 +125,12 @@ function loop() {
   snake.y += snake.dy;
 
   // wrap snake position horizontally on edge of screen
-  if (snake.x < 0) {
-    snake.x = canvas.width - grid;
-  }
-  else if (snake.x >= canvas.width) {
-    snake.x = 0;
-  }
+//  if (snake.x < 0) {
+//    snake.x = canvas.width - grid;
+//  }
+//  else if (snake.x >= canvas.width) {
+//    snake.x = 0;
+//  }
   
   // wrap snake position vertically on edge of screen
   if (snake.y < 0) {
@@ -160,11 +189,11 @@ function loop() {
         //do nothing because easy mode lets you do that.
          //only put this so that way if you don't do anything then it will not do anything.
        }
-      }else if(mode == 0){
-       confirm(""); 
       }
     }
+    }
   });
+}
 }
 
 // listen to keyboard events to move the snake
