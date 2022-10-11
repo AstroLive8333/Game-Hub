@@ -104,15 +104,15 @@ function loop() {
   requestAnimationFrame(loop);
 
   // slow game loop to 15 fps instead of 60 (60/15 = 4)
-  if(mode == 1){
+  if(mode === 1){
   if (++count < 4) {
     return;
   }
-  }else if(mode == 2){
+  }else if(mode === 2){
    if (++count < 1) {
     return;
    }else{
-    if (++count < 600000){
+    if (++count > 600){
      return;
     }
    }
@@ -123,13 +123,13 @@ function loop() {
   snake.x += snake.dx;
   snake.y += snake.dy;
 
-  // wrap snake position horizontally on edge of screen
-//  if (snake.x < 0) {
-//    snake.x = canvas.width - grid;
-//  }
-//  else if (snake.x >= canvas.width) {
-//    snake.x = 0;
-//  }
+ //wrap snake position horizontally on edge of screen
+  if (snake.x < 0) {
+    snake.x = canvas.width - grid;
+  }
+  else if (snake.x >= canvas.width) {
+    snake.x = 0;
+  }
   
   // wrap snake position vertically on edge of screen
   if (snake.y < 0) {
